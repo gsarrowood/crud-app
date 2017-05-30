@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aquent.crudapp.domain.Person;
+import com.aquent.crudapp.service.ClientService;
 import com.aquent.crudapp.service.PersonService;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  * Controller for handling basic person management operations.
@@ -25,6 +29,7 @@ public class PersonController {
     public static final String COMMAND_DELETE = "Delete";
 
     @Inject private PersonService personService;
+	@Inject private ClientService clientService;	// for client dropdown
 
     /**
      * Renders the listing page.
@@ -37,7 +42,7 @@ public class PersonController {
         mav.addObject("persons", personService.listPeople());
         return mav;
     }
-
+	
     /**
      * Renders an empty form used to create a new person record.
      *
@@ -108,6 +113,15 @@ public class PersonController {
             return mav;
         }
     }
+	
+    @ModelAttribute("clientSelectList")
+    public Map<String, String> getClientSelectList()
+		{
+		Map<String, String> clientSelectList = clientService.clientSelectItemsMap();
+		System.out.println("getClientSelectList(): " + clientSelectList);
+		return clientSelectList;
+		}
+ 
 
     /**
      * Renders the deletion confirmation page.

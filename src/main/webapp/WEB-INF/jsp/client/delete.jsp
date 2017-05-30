@@ -11,13 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delete Talent</title>
+        <title>Delete Client</title>
     </head>
     <body>
-        <h1>Delete Talent</h1>
-        <p>You are about to delete [ ${person.firstName} ${person.lastName} ]:  Are you sure?</p>
-        <form action="${pageContext.request.contextPath}/person/delete" method="post">
-            <input type="hidden" name="personId" value="${person.personId}"/>
+        <h1>Delete Client</h1>
+        <p>You are about to delete the client ${client.name}:  Are you sure?</p>
+        <form action="${pageContext.request.contextPath}/client/delete" method="post">
+            <input type="hidden" name="clientId" value="${client.clientId}"/>
             <input type="submit" name="command" value="Cancel"/>
             <input type="submit" name="command" value="Delete"/>
         </form>

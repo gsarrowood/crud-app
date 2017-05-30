@@ -38,6 +38,20 @@ public class DefaultPersonService implements PersonService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Person> listPeopleForClient( Integer clientId)
+		{
+		return personDao.listPeopleByClient( clientId);
+		}
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
+	public void syncPeopleForClient( Integer clientId, List<Integer> selectedPersonIdList)
+		{
+		personDao.syncPeopleForClient(clientId, selectedPersonIdList);
+		}
+	
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Person readPerson(Integer id) {
         return personDao.readPerson(id);
     }

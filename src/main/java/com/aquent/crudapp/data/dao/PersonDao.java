@@ -16,6 +16,25 @@ public interface PersonDao {
     List<Person> listPeople();
 
     /**
+     * Retrieves all of the person records for a specific client.
+     *
+     * @return list of person records with the specified client.
+     */
+    List<Person> listPeopleByClient(Integer clientId);
+	
+	/**
+	 * syncs selected persons with the current persons for the current
+	 * client id.  i.e. ones that are associated with this client but
+	 * are not in the selectedPersonList have their clientid set to -1.
+	 * Ones that are not associated with this client but are on the 
+	 * selectedPersonList have their clientid set to the passed in
+	 * clientId.
+	 * @param clientId
+	 * @param selectedPersonIdList 
+	 */
+	void syncPeopleForClient( Integer clientId, List<Integer> selectedPersonIdList);
+	
+    /**
      * Creates a new person record.
      *
      * @param person the values to save
